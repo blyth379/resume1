@@ -10,6 +10,36 @@
   </head>
 
   <body>
-    <%= yield %>
+      <header>
+        <ul class="header-menus">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "studentログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "studentログイン", new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "student登録", new_user_registration_path %>
+            </li>
+          <% end %>
+               <% if company_signed_in? %>
+            <li>
+              <%= link_to "companyログアウト", destroy_company_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "companyログイン", new_company_session_path %>
+            </li>
+            <li>
+              <%= link_to "company登録", new_company_registration_path %>
+            </li>
+          <% end %>
+        </ul>
+      </header>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
