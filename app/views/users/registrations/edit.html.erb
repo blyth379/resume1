@@ -28,10 +28,29 @@
     <%= f.select :gender, ["F", "M", "O"], autofocus: true, required: true, value: @user.gender %>
   </div>
 
-  
   <div class="field">
     <%= f.label :hobby %><br />
     <%= f.text_area :hobby, autofocus: true, value: @user.hobby %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hope %><br />
+    <%= f.text_area :hope, autofocus: true, value: @user.hope %>
+  </div>
+
+  <div class="field">
+    <%= f.label :university %><br />
+    <%= f.text_field :university, autofocus: true, value: @user.university %>
+  </div>
+
+  <div class="field">
+    <%= f.label :major %><br />
+    <%= f.text_field :major, autofocus: true, value: @user.major %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_image %><br />
+    <%= f.text_field :user_image, autofocus: true, value: @user.user_image %>
   </div>
   
   
