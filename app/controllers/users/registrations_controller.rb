@@ -15,14 +15,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @user = User.new
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user = User.find(params[:user][:id])
+
+    if @user.update_attributes(configure_account_update_params)
+      
+      # params[:langs].each do |lang|
+      #   Lang.create(lang_list_id: lang.to_i,user_id: current_user.id)
+      redirect_to root_path
+    else
+      redirect_back(fallback_location: root_path)
+      
+    end
+      
+  end
 
   # DELETE /resource
   # def destroy
@@ -51,6 +62,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     edit_user_registration_path
   end
+  
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :family_name, :middle_name, :gender, :nationality, :residence_country, :hobby, :hope, :university, :major, :user_image])
+  end
+  
   
 
   # If you have extra params to permit, append them to the sanitizer.

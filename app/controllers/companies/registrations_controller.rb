@@ -51,6 +51,10 @@ protected
   def after_update_path_for(resource)
     edit_company_registration_path
   end
+  
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:company_name, :hp_url, :employees_number, :working_country, :business_contents, :company_pic, :capital, :requirements, :wish])
+  end
 
 
   # If you have extra params to permit, append them to the sanitizer.
